@@ -1,9 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CACHE_KEY_TODOS } from '../constants';
-import APIClient from '../services/apiClient';
-import { Todo } from './useTodos';
-
-const apiClient = new APIClient<Todo>('/todos');
+import todoService, { Todo } from '../services/todoService';
 
 interface AddTodoContext {
   previousTodos: Todo[];
@@ -20,7 +17,7 @@ const useAddTodo = (onAdd: () => void) => {
         .post('https://jsonplaceholder.typicode.com/todos', todo)
         .then((res) => res.data),
   */
-    mutationFn: apiClient.post,
+    mutationFn: todoService.post,
     onMutate: (newTodo) => {
       // create context. returns previous todos before updating the cache
       // return empty array if getQueryData returns undefined
