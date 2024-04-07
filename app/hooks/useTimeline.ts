@@ -1,7 +1,4 @@
-import {
-  keepPreviousData,
-  useInfiniteQuery
-} from '@tanstack/react-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface Post {
