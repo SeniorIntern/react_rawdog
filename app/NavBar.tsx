@@ -3,6 +3,7 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import useCounterStore from './counter/store';
 
 export const NavBar = () => {
   const pathName = usePathname();
@@ -23,8 +24,16 @@ export const NavBar = () => {
     {
       href: '/timeline',
       option: 'Time Line'
+    },
+    {
+      href: '/counter',
+      option: 'Counter'
     }
   ];
+
+  const counter = useCounterStore((s) => s.counter);
+
+  console.log('navbar rendered!');
 
   return (
     <nav className="flex gap-10 py-4 px-10 bg-slate-200 items-center">
@@ -37,6 +46,7 @@ export const NavBar = () => {
           {n.option}
         </Link>
       ))}
+      <span>Count: {counter}</span>
     </nav>
   );
 };
